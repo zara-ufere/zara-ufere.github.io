@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Portfolio of Chizaram (Zara) Ugonna-Ufere: computer science graduate focused on backend development, IT support and security tooling.">
+<title>Chizaram (Zara) Ugonna-Ufere | Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: one calm column. A three-layer curtain plays on load (name, portfolio, focus), then the page staggers in. Playful rounded shapes on a sea-glass ground with one hot accent. */
+:root{
+  --bg:#E4F8F6;--surface:#FFFFFF;--ink:#093B47;--muted:#2E6470;--line:#B5E3E0;
+  --accent:#FF5FA2;--on-accent:#093B47;--sky:#9DE6F3;--sun:#FFE27A;--sage:#B6F0DC;--deep:#0A4A58;--on-deep:#F1FFFD;
+  --display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --body:"Figtree",system-ui,sans-serif;
+  --mono:"DM Mono",ui-monospace,Menlo,monospace;
+  --D:4.7s;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#08303B;--surface:#10475A;--ink:#EBFBF9;--muted:#A6D4DB;--line:#1F6074;
+  --accent:#FF74B1;--on-accent:#08303B;--sky:#1F7A92;--sun:#80702A;--sage:#1F7A60;--deep:#04202A;--on-deep:#EBFBF9;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#08303B;--surface:#10475A;--ink:#EBFBF9;--muted:#A6D4DB;--line:#1F6074;
+  --accent:#FF74B1;--on-accent:#08303B;--sky:#1F7A92;--sun:#80702A;--sage:#1F7A60;--deep:#04202A;--on-deep:#EBFBF9;color-scheme:dark}
+
+body{margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+*,*::before,*::after{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.65 var(--body);overflow-x:hidden}
+#top{overflow-x:clip}
+.wrap{max-width:960px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));position:relative}
+h1,h2,h3{font-family:var(--display);line-height:1.08;margin:0;letter-spacing:-.015em}
+h2{font-size:clamp(1.8rem,4vw,2.3rem);font-weight:800;margin-bottom:24px}
+h3{font-size:1.3rem;font-weight:700}
+a{color:var(--ink);text-decoration-color:var(--accent);text-decoration-thickness:3px;text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.mono{font-family:var(--mono);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase}
+
+/* intro curtain */
+.intro{position:fixed;inset:0;z-index:50;cursor:pointer;animation:gone 0s calc(var(--D) + 1.5s) forwards}
+.layer{position:absolute;inset:0;animation:wipe 1.1s cubic-bezier(.77,0,.18,1) forwards}
+.l1{background:var(--sun);animation-delay:calc(var(--D) - .02s)}
+.l2{background:var(--accent);animation-delay:calc(var(--D) - .14s)}
+.l3{background:var(--deep);color:var(--on-deep);animation-delay:calc(var(--D) - .26s);display:grid;place-items:center;padding:0 16px}
+.words{position:relative;width:100%;height:1.3em;font:800 clamp(2rem,8vw,4.6rem)/1.3 var(--display);text-align:center;overflow:hidden;letter-spacing:-.02em}
+.words span{position:absolute;inset:0;white-space:nowrap;transform:translateY(115%);animation:roll 1.2s cubic-bezier(.2,.9,.25,1) forwards}
+.words .w1{animation-delay:.3s;animation-duration:1.7s;animation-name:rollout}
+.words .w2{animation-delay:1.8s;animation-duration:1.7s;animation-name:rollout;color:var(--accent)}
+.words .w3{animation-delay:3.4s;animation-duration:1.1s;font-size:.5em;line-height:2.6;font-weight:700;letter-spacing:0}
+.bar{position:absolute;left:0;bottom:0;height:6px;width:100%;background:var(--accent);transform-origin:left;transform:scaleX(0);animation:fill calc(var(--D) - .1s) linear forwards}
+.hint{position:absolute;right:max(16px,env(safe-area-inset-right,0px));bottom:22px;opacity:.6}
+@keyframes roll{to{transform:none}}
+@keyframes rollout{0%{transform:translateY(115%)}30%,70%{transform:none}100%{transform:translateY(-115%)}}
+@keyframes wipe{to{clip-path:inset(0 0 100% 0)}}
+@keyframes fill{to{transform:scaleX(1)}}
+@keyframes gone{to{visibility:hidden;pointer-events:none}}
+html.skip .intro{display:none}
+
+/* staggered reveal */
+.st{opacity:0;transform:translateY(18px);animation:rise 1s calc(var(--D) + var(--s,0s)) cubic-bezier(.2,.9,.3,1) forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+h1 .ch{display:inline-block;opacity:0;transform:translateY(60%) rotate(6deg);animation:letter .6s cubic-bezier(.3,1.5,.5,1) forwards}
+@keyframes letter{to{opacity:1;transform:none}}
+
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;backdrop-filter:blur(10px);background:color-mix(in srgb,var(--bg) 82%,transparent)}
+nav .wrap{display:flex;gap:6px;padding-top:10px;padding-bottom:10px;overflow-x:auto}
+nav a{text-decoration:none;font-weight:700;font-size:.95rem;padding:6px 14px;border-radius:999px;white-space:nowrap;transition:background .25s,transform .25s}
+nav a:hover,nav a.cur{background:var(--sky);transform:translateY(-2px)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+
+.blob{position:absolute;z-index:-1;animation:float 10s ease-in-out infinite}
+.b1{width:240px;height:240px;border-radius:50%;background:var(--sky);top:30px;right:28px}
+.b2{width:130px;height:130px;border-radius:38% 62% 55% 45%;background:var(--sun);top:470px;right:60px;animation-delay:-3s}
+.b3{width:80px;height:80px;border-radius:50%;background:var(--accent);opacity:.55;top:44px;left:66%;animation-delay:-6s}
+@media (max-width:700px){.b1{width:140px;height:140px;top:8px;right:-24px}.b3{display:none}}
+@keyframes float{50%{transform:translate(14px,-22px) rotate(8deg)}}
+
+.hero{padding:64px 0 52px}
+.eyebrow{color:var(--muted);margin:0 0 18px;display:flex;flex-wrap:wrap;gap:4px 18px}
+.eyebrow b{color:var(--accent);font-weight:500}
+h1{font-size:clamp(2.5rem,9vw,5.4rem);font-weight:800;letter-spacing:-.03em;max-width:12ch}
+h1 .wd{display:inline-block;white-space:nowrap}
+.lede{font-size:1.25rem;max-width:38ch;margin:20px 0 26px}
+.switch{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.switch button{font:700 .95rem var(--body);padding:9px 18px;border-radius:999px;border:2px solid var(--ink);background:var(--surface);color:var(--ink);cursor:pointer;transition:transform .25s cubic-bezier(.3,1.8,.5,1),background .25s}
+.switch button:hover{transform:translateY(-3px) rotate(-2deg)}
+.switch button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
+#pitch{max-width:58ch;color:var(--muted);min-height:6.6em;margin:0 0 16px;transition:opacity .25s,transform .25s}
+#pitch.swap{opacity:0;transform:translateY(8px)}
+.mail{display:inline-flex;align-items:center;gap:8px}
+.copy{font:700 .78rem var(--body);padding:3px 11px;border-radius:999px;border:2px solid var(--ink);background:var(--surface);color:var(--ink);cursor:pointer;transition:transform .25s cubic-bezier(.3,1.8,.5,1),background .25s}
+.copy:hover{transform:translateY(-2px) rotate(-2deg)}
+.copy.done{background:var(--accent);color:var(--on-accent)}
+.contact{display:flex;flex-wrap:wrap;gap:4px 22px;font-weight:600}
+
+section{padding:48px 0}
+.grid{display:flex;flex-direction:column;gap:20px}
+.card{background:var(--surface);border:2px solid var(--line);border-radius:22px;padding:26px;transition:transform .35s cubic-bezier(.3,1.5,.5,1),box-shadow .35s,opacity .4s,border-color .3s}
+.card:hover{transform:translateY(-6px) rotate(-.5deg);box-shadow:8px 8px 0 var(--sky);border-color:var(--ink)}
+.card.off{opacity:.42}
+.top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 16px}
+.gh{font-weight:700;font-size:.95rem;white-space:nowrap}
+.stat{color:var(--muted);margin:6px 0 0}
+.card p.paper{margin:0 0 14px}
+.card p{margin:12px 0 14px;max-width:66ch}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.chips li{font-size:.85rem;font-weight:700;padding:3px 12px;border-radius:999px;background:var(--sage);transition:transform .25s cubic-bezier(.3,1.8,.5,1)}
+.chips li:hover{transform:scale(1.12) rotate(-3deg)}
+.role{margin-bottom:26px;padding-left:20px;border-left:5px solid var(--accent);border-radius:3px}
+.role h3{font-size:1.2rem}.role .meta{color:var(--muted);font-size:.92rem;margin:2px 0 8px}.role p{margin:0;max-width:66ch}
+.skills dt{font-weight:700;margin:18px 0 8px}
+.skills dd{margin:0}
+.skills .chips li{background:var(--sun);color:var(--ink);transition:transform .25s cubic-bezier(.3,1.8,.5,1),opacity .3s,background .3s}
+:root[data-theme="dark"] .skills .chips li,:root[data-theme="dark"] .chips li{color:var(--ink)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .chips li{color:var(--ink)}}
+.skills .chips li.hi{background:var(--accent);color:var(--on-accent)}
+.skills .chips li.dim{opacity:.4}
+footer{padding:30px 0 60px;color:var(--muted)}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s cubic-bezier(.2,.9,.3,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .intro{display:none}.st,h1 .ch,.rv{opacity:1;transform:none}
+}
+</style>
+
+</head>
+<body>
+<div class="intro" id="intro" aria-hidden="true">
+  <div class="layer l1"></div>
+  <div class="layer l2"></div>
+  <div class="layer l3">
+    <div class="words"><span class="w1">Zara Ugonna-Ufere</span><span class="w2">Portfolio</span><span class="w3">Software &middot; Security &middot; Data</span></div>
+    <div class="bar"></div>
+    <div class="hint mono">tap to skip</div>
+  </div>
+</div>
+
+<nav class="st" style="--s:.2s"><div class="wrap"><a href="#top" class="cur">Hello</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#education">Education</a></div></nav>
+<div class="wrap" id="top">
+<i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i>
+<header class="hero">
+  <p class="eyebrow mono st" style="--s:0s"><span>Portfolio <b>/</b> 2026</span><span>Washington, D.C.</span></p>
+  <h1 id="name" aria-label="Chizaram (Zara) Ugonna-Ufere">Chizaram (Zara) Ugonna-Ufere</h1>
+  <p class="lede st" style="--s:2.3s">Hi, I'm Zara! I'm a computer science graduate focused on backend development, with hands-on experience in IT support and security tooling.</p>
+  <div class="switch st" style="--s:1.9s" role="group" aria-label="Choose a focus">
+    <button type="button" data-t="se" aria-pressed="true">Software engineering</button>
+    <button type="button" data-t="sec" aria-pressed="false">Security and risk</button>
+    <button type="button" data-t="data" aria-pressed="false">Data analysis</button>
+    <button type="button" data-t="it" aria-pressed="false">IT support</button>
+  </div>
+  <p id="pitch" class="st" style="--s:2.1s" aria-live="polite"></p>
+  <div class="contact st" style="--s:2.3s"><span class="mail"><a href="mailto:zaraeufere@icloud.com" id="mail">zaraeufere@icloud.com</a><button type="button" class="copy" id="copy" aria-label="Copy email address">Copy</button></span><a href="https://linkedin.com/in/zara-ugonna-ufere" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/zara-ufere" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+</header>
+
+<section id="projects" class="rv">
+  <h2>Projects</h2>
+  <div class="grid" id="grid">
+    <article class="card" id="p-astlogic">
+      <div class="top"><h3>astlogic</h3><a class="gh" href="https://github.com/zara-ufere/astlogic" target="_blank" rel="noopener noreferrer">View on GitHub &#8599;</a></div>
+      <p class="stat mono">Mentored research (CSC 498) &middot; 13 rubric checks on 3 assignments</p>
+      <p>Checks the structure of Python programs against rubrics written in Prolog, without running the code. Output-based graders can be satisfied by hard-coded answers, so this asks whether a program uses the structures the assignment is about. Python's AST is translated into Prolog terms, and each rubric rule reports pass or fail with a matching exit code. I wrote the accompanying research paper under Dr. Mark F. Russo, where all 13 structural checks pass across three course assignments.</p>
+      <p class="paper"><a class="gh" href="https://github.com/zara-ufere/astlogic/blob/main/docs/paper.pdf" target="_blank" rel="noopener noreferrer">Read the paper! &#8599;</a></p>
+      <ul class="chips"><li>Python</li><li>Prolog</li><li>ASTs</li><li>pytest</li></ul>
+    </article>
+    <article class="card" id="p-accessguard">
+      <div class="top"><h3>AccessGuard</h3><a class="gh" href="https://github.com/zara-ufere/accessguard" target="_blank" rel="noopener noreferrer">View on GitHub &#8599;</a></div>
+      <p class="stat mono">103 tests &middot; SQLite and PostgreSQL in CI</p>
+      <p>An access governance service. It finds people whose combined roles break a separation of duties rule, refuses a risky grant before it happens, and keeps a hash-chained audit log that shows if a record was altered. Open conflicts are reported as risk-rated exceptions mapped to NIST SP 800-53 controls, with a dashboard that opens on a plain-language summary.</p>
+      <ul class="chips"><li>FastAPI</li><li>SQLAlchemy</li><li>PostgreSQL</li><li>NIST SP 800-53</li></ul>
+    </article>
+    <article class="card" id="p-logsentry">
+      <div class="top"><h3>logsentry</h3><a class="gh" href="https://github.com/zara-ufere/logsentry" target="_blank" rel="noopener noreferrer">View on GitHub &#8599;</a></div>
+      <p class="stat mono">12 detection rules &middot; scored on 13 planted attacks</p>
+      <p>Reads web server and SSH logs, detects attacks, and groups alerts into one incident per attacker. It then grades itself against labelled attack campaigns and look-alike harmless traffic, so you can see what it catches and what it misses. Lines that fail to parse are stored, not dropped. Standard library only, with SQLite storage and an HTML report.</p>
+      <ul class="chips"><li>Python</li><li>SQLite</li><li>Log analysis</li><li>Incident response</li></ul>
+    </article>
+    <article class="card" id="p-cabi">
+      <div class="top"><h3>Capital Bikeshare analysis</h3><a class="gh" href="https://github.com/zara-ufere/cabi-analysis" target="_blank" rel="noopener noreferrer">View on GitHub &#8599;</a></div>
+      <p class="stat mono">6.4 million trips &middot; 12 months of public data</p>
+      <p>A SQL and pandas analysis of a year of D.C. bikeshare trips. Cleaning rules live in SQL and every rejected row is kept with its reason. It shows commute-shaped demand for members, a 2.7 to 1 swing between summer and winter, and which stations drain or fill on weekday mornings. Tested against an independent Python calculation, with the limits of the data written up.</p>
+      <ul class="chips"><li>SQL</li><li>SQLite</li><li>pandas</li><li>matplotlib</li></ul>
+    </article>
+  </div>
+</section>
+
+<section id="experience" class="rv">
+  <h2>Experience</h2>
+  <div class="role"><h3>Media Technology Support Technician</h3><p class="meta">The College of New Jersey, Aug 2025 to May 2026</p>
+  <p>Diagnosed hardware, software and network problems for AV and computing equipment in time-sensitive classrooms, kept ticket documentation that exposed trends and cut repeat calls, enforced access and configuration controls, and trained faculty and students to avoid common issues.</p></div>
+  <div class="role"><h3>Resident Assistant</h3><p class="meta">Campus Town at The College of New Jersey, Aug 2025 to May 2026</p>
+  <p>Supported 80+ residents, enforced community policies, escalated incidents through the proper channels, and documented conduct incidents and program outcomes for administrative review.</p></div>
+</section>
+
+<section id="skills" class="rv">
+  <h2>Skills</h2>
+  <dl class="skills">
+    <dt>Languages</dt><dd><ul class="chips"><li data-tracks="se data it sec">Python</li><li data-tracks="se">Java</li><li data-tracks="se">C/C++</li><li data-tracks="data se it sec">SQL</li><li data-tracks="se">JavaScript</li><li data-tracks="se">Prolog</li></ul></dd>
+    <dt>Frameworks and tools</dt><dd><ul class="chips"><li data-tracks="se sec">FastAPI</li><li data-tracks="se sec">SQLAlchemy</li><li data-tracks="se">Spring Boot</li><li data-tracks="se it">Docker</li><li data-tracks="se data it sec">Git</li><li data-tracks="se data it sec">GitHub Actions</li><li data-tracks="se data sec">pytest</li><li data-tracks="se">JUnit</li><li data-tracks="data">pandas</li><li data-tracks="data">matplotlib</li></ul></dd>
+    <dt>Databases</dt><dd><ul class="chips"><li data-tracks="se data it sec">PostgreSQL</li><li data-tracks="se data it sec">SQLite</li><li data-tracks="se data it">MySQL</li><li data-tracks="se data">MongoDB</li></ul></dd>
+    <dt>Security and compliance</dt><dd><ul class="chips"><li data-tracks="sec it">NIST SP 800-53</li><li data-tracks="se sec it">OWASP</li><li data-tracks="sec">Segregation of duties</li><li data-tracks="sec it">Log analysis</li><li data-tracks="sec">Audit logging</li></ul></dd>
+  </dl>
+</section>
+
+<section id="education" class="rv">
+  <h2>Education</h2>
+  <div class="role"><h3>B.S. in Computer Science</h3><p class="meta">The College of New Jersey, May 2026</p>
+  <p>Coursework in software engineering, database systems, analysis of algorithms, theory of computation, secure coding, data science, operating systems and programming languages.</p></div>
+  <div class="role"><h3>A.S. in Computer Science, Honors Program</h3><p class="meta">Camden County College, May 2024</p></div>
+</section>
+<footer>All four projects are on <a href="https://github.com/zara-ufere" target="_blank" rel="noopener noreferrer">GitHub</a>. To reach me, write to <a href="mailto:zaraeufere@icloud.com">zaraeufere@icloud.com</a>.</footer>
+</div>
+
+<script>
+var P={
+se:"I love building backend services and tools in Python and Java: APIs with authentication and validation, a Prolog-backed code checker, and a log analyzer scored against planted attacks. Every project here has tests that run in CI!",
+sec:"My projects look for the problems auditors and security teams care about: conflicting access, tampered records and attacks hiding in logs. I map findings to NIST SP 800-53 and OWASP, and I measure whether my own detection actually works!",
+data:"I like turning messy public data into answers I can defend. My bikeshare project cleans 6.4 million trips with SQL, keeps every rejected row, and reports patterns along with the limits of what the data can say. Data puzzles are my favorite!",
+it:"As a Media Technology Support Technician I diagnosed hardware, software and network issues for faculty and students in live classrooms, documented every ticket, and escalated complex problems to senior IT staff. Helping people get unstuck is the part I enjoy most!"};
+var RANK={se:{"p-astlogic":0,"p-accessguard":1,"p-logsentry":2,"p-cabi":3},
+sec:{"p-accessguard":0,"p-logsentry":1},
+data:{"p-cabi":0,"p-logsentry":1,"p-accessguard":2},
+it:{"p-logsentry":0,"p-accessguard":1}};
+
+/* name: split into words, then letters, timed after the curtain */
+var n=document.getElementById("name"),txt=n.textContent;n.textContent="";
+var k=0;txt.split(" ").forEach(function(w){
+  var wd=document.createElement("span");wd.className="wd";wd.setAttribute("aria-hidden","true");
+  w.split("").forEach(function(c){var s=document.createElement("span");s.className="ch";s.textContent=c;s.style.animationDelay="calc(var(--D) + "+(.2+k++*.06)+"s)";wd.appendChild(s)});
+  n.appendChild(wd);n.appendChild(document.createTextNode(" "));
+});
+
+/* skip the curtain on click, tap or key */
+var root=document.documentElement;
+function skip(){root.classList.add("skip");root.style.setProperty("--D","0s")}
+document.getElementById("intro").addEventListener("click",skip);
+addEventListener("keydown",function(e){if(e.key==="Escape"||e.key==="Enter"||e.key===" ")skip()});
+
+var cb=document.getElementById("copy");
+cb.addEventListener("click",function(){
+ var addr="zaraeufere@icloud.com";
+ function ok(){cb.textContent="Copied!";cb.classList.add("done");setTimeout(function(){cb.textContent="Copy";cb.classList.remove("done")},1800)}
+ function fallback(){var m=document.getElementById("mail"),rg=document.createRange();rg.selectNodeContents(m);var sel=getSelection();sel.removeAllRanges();sel.addRange(rg);cb.textContent="Selected";setTimeout(function(){cb.textContent="Copy"},1800)}
+ try{navigator.clipboard.writeText(addr).then(ok,fallback)}catch(e){fallback()}
+});
+var pitch=document.getElementById("pitch");
+function setT(t,first){
+ function go(){pitch.textContent=P[t];pitch.classList.remove("swap")}
+ if(first){go()}else{pitch.classList.add("swap");setTimeout(go,250)}
+ document.querySelectorAll(".switch button").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.t===t)});
+ document.querySelectorAll("#grid .card").forEach(function(c){var r=RANK[t][c.id];c.style.order=r===undefined?9:r;c.classList.toggle("off",r===undefined)});
+ document.querySelectorAll(".skills li").forEach(function(l){var m=l.dataset.tracks.split(" ").indexOf(t)>=0;l.classList.toggle("hi",m);l.classList.toggle("dim",!m)});
+}
+document.querySelectorAll(".switch button").forEach(function(b){b.addEventListener("click",function(){setT(b.dataset.t,false)})});
+setT("se",true);
+
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll(".rv").forEach(function(s){io.observe(s)});
+var links=[].slice.call(document.querySelectorAll("nav a")),secs=["top","projects","experience","skills","education"].map(function(i){return document.getElementById(i)});
+addEventListener("scroll",function(){var y=scrollY+140,k=0;secs.forEach(function(s,i){if(s.offsetTop<=y)k=i});links.forEach(function(a,i){a.classList.toggle("cur",i===k)})},{passive:true});
+</script>
+</body>
+</html>
